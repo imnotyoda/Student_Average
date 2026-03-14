@@ -4,94 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Grade</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4f46e5">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .card {
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-    button {
-      background: #e53935;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #d32f2f;
-    }
-    #result {
-      margin-top: 15px;
-      font-weight: 500;
-      color: #333;
-      text-align: left;
-    }
+    body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .card { background: #fff; padding: 20px; border-radius: 10px; width: 300px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
+    input, button { width: 100%; padding: 10px; margin: 6px 0; font-size: 1rem; }
+    button { background: red; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: darkred; }
+    #result { margin-top: 10px; text-align: left; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Student Grade</h2>
-    <input id="student" type="text" placeholder="Student Name">
-    <input id="teacher" type="text" placeholder="Teacher Name">
-    <input id="grade" type="number" placeholder="Grade">
-    <button onclick="checkGrade()">Check</button>
-    <button onclick="clearAll()">Clear</button>
-    <div id="result"></div>
-  </div>
 
-  <script>
-    function checkGrade() {
-      var student = document.getElementById('student').value;
-      var teacher = document.getElementById('teacher').value;
-      var grade = parseFloat(document.getElementById('grade').value);
+<div class="card">
+  <h2>Student Grade</h2>
+  <input id="student" type="text" placeholder="Student Name">
+  <input id="teacher" type="text" placeholder="Teacher Name">
+  <input id="grade" type="number" placeholder="Grade">
+  <button type="button" onclick="checkGrade()">Check</button>
+  <button type="button" onclick="clearAll()">Clear</button>
+  <div id="result"></div>
+</div>
 
-     if (student === "" || teacher === "" || grade === "") {
-  document.getElementById('result').innerHTML = "Fill in all fields!";
-  return;
+<script>
+function checkGrade() {
+  var student = document.getElementById('student').value;
+  var teacher = document.getElementById('teacher').value;
+  var grade = document.getElementById('grade').value;
+
+  if (student === "" || teacher === "" || grade === "") {
+    document.getElementById('result').innerHTML = "Fill in all fields!";
+    return;
+  }
+
+  var remark = (parseFloat(grade) >= 75) ? "Passed" : "Failed";
+
+  document.getElementById('result').innerHTML =
+    "Student: " + student + "<br>" +
+    "Teacher: " + teacher + "<br>" +
+    "Grade: " + grade + "<br>" +
+    "Remarks: " + remark;
 }
-      }
 
-      var remark = (grade >= 75) ? "Passed" : "Failed";
+function clearAll() {
+  document.getElementById('student').value = "";
+  document.getElementById('teacher').value = "";
+  document.getElementById('grade').value = "";
+  document.getElementById('result').innerHTML = "";
+}
+</script>
 
-      document.getElementById('result').innerHTML =
-        "Student: " + student + "<br>" +
-        "Teacher: " + teacher + "<br>" +
-        "Grade: " + grade + "<br>" +
-        "Remarks: " + remark;
-    
-
-    function clearAll() {
-      document.getElementById('student').value = "";
-      document.getElementById('teacher').value = "";
-      document.getElementById('grade').value = "";
-      document.getElementById('result').innerHTML = "";
-    }
-  </script>
 </body>
 </html>
