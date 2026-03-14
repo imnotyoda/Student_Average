@@ -67,21 +67,21 @@
 
   <script>
     function checkGrade() {
-      var s = document.getElementById('student').value.trim();
-      var t = document.getElementById('teacher').value.trim();
-      var g = parseFloat(document.getElementById('grade').value);
+      var student = document.getElementById('student').value;
+      var teacher = document.getElementById('teacher').value;
+      var grade = parseFloat(document.getElementById('grade').value);
 
-      if (s === "" || t === "" || isNaN(g)) {
+      if (!student || !teacher || isNaN(grade)) {
         document.getElementById('result').innerHTML = "Fill in all fields!";
         return;
       }
 
-      var remark = (g >= 75) ? "Passed" : "Failed";
+      var remark = (grade >= 75) ? "Passed" : "Failed";
 
       document.getElementById('result').innerHTML =
-        "Student: " + s + "<br>" +
-        "Teacher: " + t + "<br>" +
-        "Grade: " + g + "<br>" +
+        "Student: " + student + "<br>" +
+        "Teacher: " + teacher + "<br>" +
+        "Grade: " + grade + "<br>" +
         "Remarks: " + remark;
     }
 
