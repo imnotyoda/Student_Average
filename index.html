@@ -67,22 +67,29 @@
 
   <script>
     function checkGrade() {
-      const s = document.getElementById('student').value.trim();
-      const t = document.getElementById('teacher').value.trim();
-      const g = parseFloat(document.getElementById('grade').value);
+      var s = document.getElementById('student').value.trim();
+      var t = document.getElementById('teacher').value.trim();
+      var g = parseFloat(document.getElementById('grade').value);
 
-      if (!s || !t || isNaN(g)) {
-        return document.getElementById('result').innerHTML = "Fill in all fields!";
+      if (s === "" || t === "" || isNaN(g)) {
+        document.getElementById('result').innerHTML = "Fill in all fields!";
+        return;
       }
 
-      const remark = g >= 75 ? "Passed" : "Failed";
+      var remark = (g >= 75) ? "Passed" : "Failed";
+
       document.getElementById('result').innerHTML =
-        `Student: ${s}<br>Teacher: ${t}<br>Grade: ${g}<br>Remarks: ${remark}`;
+        "Student: " + s + "<br>" +
+        "Teacher: " + t + "<br>" +
+        "Grade: " + g + "<br>" +
+        "Remarks: " + remark;
     }
 
     function clearAll() {
-      ['student','teacher','grade'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('result').innerHTML = '';
+      document.getElementById('student').value = "";
+      document.getElementById('teacher').value = "";
+      document.getElementById('grade').value = "";
+      document.getElementById('result').innerHTML = "";
     }
   </script>
 </body>
