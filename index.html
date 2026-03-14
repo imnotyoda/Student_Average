@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Grade</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #e53935;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #d32f2f;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: 500;
+      color: #333;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Student Grade</h2>
+    <input id="student" type="text" placeholder="Student Name">
+    <input id="teacher" type="text" placeholder="Teacher Name">
+    <input id="grade" type="number" placeholder="Grade">
+    <button onclick="checkGrade()">Check</button>
+    <button onclick="clearAll()">Clear</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkGrade() {
+      const s = document.getElementById('student').value.trim();
+      const t = document.getElementById('teacher').value.trim();
+      const g = parseFloat(document.getElementById('grade').value);
+
+      if (!s || !t || isNaN(g)) {
+        return document.getElementById('result').innerHTML = "Fill in all fields!";
+      }
+
+      const remark = g >= 75 ? "Passed" : "Failed";
+      document.getElementById('result').innerHTML =
+        `Student: ${s}<br>Teacher: ${t}<br>Grade: ${g}<br>Remarks: ${remark}`;
+    }
+
+    function clearAll() {
+      ['student','teacher','grade'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('result').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
