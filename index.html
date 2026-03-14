@@ -71,9 +71,10 @@
       var teacher = document.getElementById('teacher').value;
       var grade = parseFloat(document.getElementById('grade').value);
 
-      if (!student || !teacher || isNaN(grade)) {
-        document.getElementById('result').innerHTML = "Fill in all fields!";
-        return;
+     if (student === "" || teacher === "" || grade === "") {
+  document.getElementById('result').innerHTML = "Fill in all fields!";
+  return;
+}
       }
 
       var remark = (grade >= 75) ? "Passed" : "Failed";
@@ -83,7 +84,7 @@
         "Teacher: " + teacher + "<br>" +
         "Grade: " + grade + "<br>" +
         "Remarks: " + remark;
-    }
+    
 
     function clearAll() {
       document.getElementById('student').value = "";
